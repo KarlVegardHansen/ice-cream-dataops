@@ -5,7 +5,7 @@ modules:
   - name: ice_cream_api
     location:
       path: modules/bootcamp/ice_cream_api
-      hash: a3d75fba
+      hash: e470254a
     build_variables:
     - key: icapi_ds_external_id
       value: ds_icapi
@@ -104,6 +104,20 @@ modules:
           path: /home/user/workspace/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/extraction_pipelines/ep_icapi_datapoints.ExtractionPipeline.yaml
           hash: 1a1814d6
         kind: ExtractionPipeline
+      workflows:
+      - identifier:
+          externalId: icapi_trigger
+        source:
+          path: /home/user/workspace/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkFlowTrigger.yaml
+          hash: 4bb02ead
+        kind: WorkflowTrigger
+      - identifier:
+          workflowExternalId: wf_icapi_data_pipeline
+          version: '1'
+        source:
+          path: /home/user/workspace/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkflowVersion.yaml
+          hash: 61f07587
+        kind: WorkflowVersion
       transformations:
       - identifier:
           externalId: contextualize_ts_assets
@@ -186,7 +200,7 @@ modules:
           path: /home/user/workspace/ice-cream-dataops/ice-cream-dataops/modules/bootcamp/ice_cream_api/data_sets/data_sets.DataSet.yaml
           hash: fa2de68a
         kind: DataSet
-    warning_count: 2
+    warning_count: 5
     status: Success
     iteration: 1
   - name: oee
